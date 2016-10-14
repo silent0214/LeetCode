@@ -1,0 +1,23 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        my_nums=sorted(nums) #排序
+        i=0                  #左端点
+        j=len(my_nums)-1     #右端点
+        while i<j:
+            sum=my_nums[i]+my_nums[j]
+            if sum==target:
+                break;
+            elif sum>target:
+                j=j-1
+            else:
+                i=i+1
+        pos1=nums.index(my_nums[i])
+        pos2=nums.index(my_nums[j])
+        if pos1 == pos2:    # list中含有两个相同元素
+            pos2 = nums[pos1+1:].index(my_nums[j]) + pos1+1
+        return pos1,pos2
